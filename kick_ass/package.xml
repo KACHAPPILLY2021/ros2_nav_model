@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>kick_ass</name>
+  <version>0.0.0</version>
+  <description>TODO: Package for teleop and navigation using lidar sensor</description>
+  <maintainer email="jeffinjohnyk@gmail.com">jeffin</maintainer>
+  <license>TODO: License declaration</license>
+
+  <depend>urdf</depend>
+  <depend>angles</depend>
+  <depend>gazebo_dev</depend>
+  <depend>gazebo_ros</depend>
+  <depend>controller_manager</depend>
+  <depend>hardware_interface</depend>
+  <depend>pluginlib</depend>
+  <depend>gazebo_ros_pkgs</depend>
+  <depend>ros2launch</depend>
+  <depend>joint_state_publisher</depend>
+  <depend>joint_state_publisher_gui</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>rviz2</depend>
+  <depend>xacro</depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <exec_depend>rclcpp</exec_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
