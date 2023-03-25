@@ -23,12 +23,6 @@
       </ul>
     </li>
     <li>
-      <a href="#documentation">Documentation</a>
-      <ul>
-        <li><a href="#report">Report</a></li>
-      </ul>
-    </li>
-    <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
@@ -36,7 +30,6 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#contributors">Contributors</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#license">License</a></li>
   </ol>
@@ -47,16 +40,14 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+A four-wheeled robot was designed with **SolidWorks** and a **ROS 2** package was created in ```Python``` for Teleoperation and Navigation with obstacle avoidance.
 
+Summary of tasks achieved: 
+* Created robot model in ```SolidWorks``` and converted into ```urdf```.
+* Attached ```lidar``` on the robot and deployed ```differential drive``` using gazebo plug-in.
+* Programmed an ```Estimator``` class which converts ```quartenion``` from odometry topic to ```euler``` angles. 
+* And a ```Controller``` class uses these values from estimator for Obstacle Avoidance.
 
-Implemented Depth First Search algorithm using Object Oriented Programming in C++ and visualized its output using Micromouse simulator.
-
-Summary of tasks achieved:
-* Implemented DFS using a representation of the maze(mouse has no prior knowledge of walls except the boundaries.)
-* Generated path from current position to goal using the representation of the maze.
-* Moved the mouse using API interface commands and updated the walls as detected.
-* The robot halted when the mouse hit a wall, and DFS was employed to recalculate the path using prior wall data.
-* The described steps were repeated until the goal position was achieved.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -86,21 +77,6 @@ https://user-images.githubusercontent.com/90359587/224219957-2b29a8ae-3ab5-4141-
 
 
 
-<!-- Document and Reports -->
-## Documentation
-
-The documentation for this project can be found here.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-### Report
-
-Detailed decription for this project can be found in this [![Youtube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/9MUCtm4vwkQ)
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -108,40 +84,26 @@ These are the instructions to get started on the project.
 To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
-* atleast C++17
+* Python 3.6 +
+* ROS 2 Turtlebot3 teleop should be installed.
+* ROS 2 : foxy (tested)
 * OS - Linux (tested)
 
 
 ### Installation
 
-Installing the micromouse simulator and running the code.
+1. Copy the package ```kick_ass``` inside the ```src``` folder of catkin workspace ```catkin_ws```.
 
-1. Make directory
+2. Make the following changes inside the ```kick_ass.urdf``` file located at ```catkin_ws/src/kick_ass/urdf```.
+    * Replace all ''**/home/jeffin/check_r2/src**'' inside the ```filename``` attribute of ```mesh``` tag to the absolute path of the current package. 
+    * So if ```catkin_ws``` is in home directory, it should be ''**/home/username/catkin_ws/src**''
+3. Navigate to ```src``` and build
    ```sh
-   mkdir ~/RWA2_simulator
+   colcon build
    ```
-2. Clone the repos
+4. Source the workspace
    ```sh
-   cd ∼ /RWA2_simulator
-   ```
-   ```sh
-   git clone https://github.com/mackorone/mms.git
-   ```
-   ```sh
-   git clone https://github.com/micromouseonline/mazefiles.git
-   ```
-   ```sh
-   git clone https://github.com/KACHAPPILLY2021/maze_solving_algorithm.git
-   ```
-3. Compile Simulator
-   ```sh
-   sudo apt-get install qt5-default
-   ```
-   ```sh
-   cd mms/src
-   ```
-   ```sh
-   qmake && make
+   source ~/catkin_ws/devel/setup.bash
    ```
 
 
@@ -152,36 +114,32 @@ Installing the micromouse simulator and running the code.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-How to start simulator and use this DFS code in it.
-1. Start simulator
+### To run teleop
+
+1. Run the command :
    ```sh
-   cd ∼ /RWA2_simulator/mms/bin
+   ros2 launch kick_ass launch_urdf_into_gazebo.launch.py 
    ```
+2. Open new terminal ,source workspace and run:
    ```sh
-   ./mms
+   ros2 run turtlebot3_teleop teleop_keyboard 
    ```
-2. Choose any maze type and Click on the + button as shown in figure.
-
-<img src="https://github.com/KACHAPPILLY2021/maze_solving_algorithm/blob/main/img/Screenshot%20from%202023-03-04%2020-22-05_2.png" alt="screenshot">
-
-3. **Directory**: Click Browse and navigate to 'maze_solving_algorithm'
-4. Enter **Build command** as:
+```NOTE``` : If turtlebot3 teleop not available, try:
    ```sh
-   g++ src/main.cpp src/mouse.cpp src/node.cpp src/api.cpp
+   ros2 run teleop_twist_keyboard teleop_twist_keyboard
    ```
-5. Enter **Run Command** as :
-  ```sh
-  ./a.out
-  ```
-6. Then Press **Build**, followed by **RUN** under the **Controls** Section
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### To run Robot Navigation node with Obstacle Avoidance
 
-
-<!-- CONTRIBUTORS -->
-## Contributors
-
-Here are the
+1. Source the workspace.
+2. Start simulation:
+   ```sh
+   ros2 launch kick_ass launch_urdf_into_gazebo.launch.py
+   ```
+3. Open new terminal ,source workspace and run:
+   ```sh
+   ros2 launch kick_ass robot_move.launch.py
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
