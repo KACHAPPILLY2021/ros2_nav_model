@@ -48,7 +48,7 @@ Summary of tasks achieved:
 * Programmed an ```Estimator``` class which converts ```quartenion``` from odometry topic to ```euler``` angles. 
 * And a ```Controller``` class uses these values from estimator for Obstacle Avoidance.
 
-
+[CLICK HERE](https://github.com/KACHAPPILLY2021/ros1_solidworks_teleop) - To view ```ROS 1``` implementation of the project with modifications. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
